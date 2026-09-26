@@ -1,4 +1,4 @@
-# @vietthemes/open-sso-node
+# open-sso-node
 
 Generic OAuth-style "Login via SSO" client for Node apps: builds the login
 redirect URL and handles the callback token exchange against any provider
@@ -9,7 +9,7 @@ followed by a `POST /oauth/token` exchange). Node port of the
 ## Install
 
 ```bash
-npm install @vietthemes/open-sso-node
+npm install open-sso-node
 ```
 
 ## Why a redirect store abstraction?
@@ -27,7 +27,7 @@ for the provider and read back on return. This is exactly what
 ## Usage (Express)
 
 ```ts
-import { SsoClient, SsoConfig, SessionRedirectStore } from '@vietthemes/open-sso-node';
+import { SsoClient, SsoConfig, SessionRedirectStore } from 'open-sso-node';
 
 const config = new SsoConfig(
   process.env.SSO_PROVIDER_HOST!,
