@@ -61,7 +61,7 @@ app.get('/oauth/callback', async (req, res) => {
     return res.redirect('/login');
   }
 
-  // result.user.email / .name / .displayName
+  // result.user.email / .name / .displayName / .avatar
   // Map to your own user table / session here — this SDK doesn't touch
   // your user model, it only speaks the provider's protocol.
 

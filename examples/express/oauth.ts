@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { SessionRedirectStore, SsoClient, SsoConfig } from '@vietthemes/open-sso-node';
+import { SessionRedirectStore, SsoClient, SsoConfig } from 'open-sso-node';
 
 const config = new SsoConfig(
   process.env.SSO_PROVIDER_HOST!,
@@ -28,7 +28,7 @@ oauthRouter.get('/oauth/callback', async (req, res) => {
     return res.redirect('/login');
   }
 
-  // result.user.email / .name / .displayName
+  // result.user.email / .name / .displayName / .avatar
   // Map to your own user table / session here (this SDK doesn't touch your
   // user model — it only speaks the provider's protocol).
 

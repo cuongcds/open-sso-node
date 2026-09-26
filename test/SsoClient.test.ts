@@ -32,7 +32,10 @@ test('login url never carries redirect as query param', () => {
 test('handleCallback resolves user and original redirect', async () => {
   const store = new ArrayRedirectStore();
   store.put('portal/website');
-  const http = new FakeHttpClient(200, '{"email":"a@b.com","name":"A","display_name":"Mr A"}');
+  const http = new FakeHttpClient(
+    200,
+    '{"email":"a@b.com","name":"A","display_name":"Mr A","avatar":"https://accounts.example.com/uploads/a.png"}'
+  );
   const client = new SsoClient(makeConfig(), store, http);
 
   const result = await client.handleCallback('tok-123');
@@ -40,6 +43,7 @@ test('handleCallback resolves user and original redirect', async () => {
   assert.equal(result.success, true);
   assert.equal(result.user?.email, 'a@b.com');
   assert.equal(result.user?.displayName, 'Mr A');
+  assert.equal(result.user?.avatar, 'https://accounts.example.com/uploads/a.png');
   assert.equal(result.redirectTo, 'portal/website');
   assert.deepEqual(http.lastFields, {
     token: 'tok-123',
@@ -61,6 +65,17 @@ test('handleCallback without token fails without an http call', async () => {
 
   assert.equal(result.success, false);
   assert.equal(http.lastUrl, null);
+});
+
+test('handleCallback treats missing/empty avatar as null', async () => {
+  const store = new ArrayRedirectStore();
+  const http = new FakeHttpClient(200, '{"email":"a@b.com","name":"A","avatar":""}');
+  const client = new SsoClient(makeConfig(), store, http);
+
+  const result = await client.handleCallback('tok-123');
+
+  assert.equal(result.success, true);
+  assert.equal(result.user?.avatar, null);
 });
 
 test('handleCallback with no email in response fails', async () => {
