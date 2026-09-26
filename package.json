@@ -1,6 +1,6 @@
 {
   "name": "open-sso-node",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generic OAuth-style \"Login via SSO\" client for Node apps: builds the login redirect URL and handles the callback token exchange against any provider that speaks this simple protocol (GET /login?callback=...&client_id=... followed by a POST /oauth/token exchange).",
   "license": "MIT",
   "main": "dist/index.js",
