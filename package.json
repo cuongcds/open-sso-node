@@ -1,0 +1,24 @@
+{
+  "name": "@vietthemes/open-sso-node",
+  "version": "0.1.0",
+  "description": "Generic OAuth-style \"Login via SSO\" client for Node apps: builds the login redirect URL and handles the callback token exchange against any provider that speaks this simple protocol (GET /login?callback=...&client_id=... followed by a POST /oauth/token exchange).",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test --require ts-node/register test/**/*.test.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.4.0"
+  }
+}
